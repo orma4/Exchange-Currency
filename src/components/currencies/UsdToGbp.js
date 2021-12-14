@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchCurrencyRange } from "../api/fetchCurrency";
+import { fetchCurrencyRange, fetchCurrency } from "../api/fetchCurrency";
 import { useSelector, useDispatch } from "react-redux";
 import Chart from "../ui/Chart";
 import { getCurrentChartData, set } from "../../features/counter/counterSlice";
@@ -10,23 +10,22 @@ const UsdToGbp = () => {
   const data = useSelector(getCurrentChartData("usdToGbp"));
   const dispatch = useDispatch();
 
-  console.log(data);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [currencies, setCurrencies] = useState([]);
   const [dateRange, setDateRange] = useState([
     convertDateFormat(new Date()),
     convertDateFormat(addDays(new Date(), 1)),
-  ]); // [startDate, endDate]
+  ]);
 
   useEffect(() => {
-    fetchCurrencyRange(dateRange, "USD", "GBP")
+    fetchCurrency("USD", dateRange)
       .then((data) => {
         console.log(data, "fetchCurrenciesResult");
         dispatch(set(data));
       })
       .catch((err) => {
-        // ???
+        // todo
       })
       .finally(() => {
         setLoading(false);
@@ -35,6 +34,7 @@ const UsdToGbp = () => {
 
   return (
     <div>
+      {console.log(dateRange)}
       <Chart loading={loading} data={data} />
       <DatePicker />
     </div>

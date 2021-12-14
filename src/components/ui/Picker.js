@@ -20,7 +20,7 @@ const Picker = () => {
 
   return (
     <div className="date-picker">
-      {console.log(startDate, endDate)}
+      {/* {console.log(startDate, endDate)} */}
       <button className="button-picker" onClick={handleClick}>
         {/* {format(startDate, "dd-MM-yyyy")} */}
         {"dd-MM-yyyy"}

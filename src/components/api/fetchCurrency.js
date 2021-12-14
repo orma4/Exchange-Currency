@@ -1,6 +1,9 @@
 import { config } from "../../config";
 import { addDays, convertDateFormat } from "../../utils/date";
 
+const URL = config.api.url;
+const API_KEY = config.api.API_KEY;
+
 export async function fetchCurrencyRange(
   [startDate, endDate],
   baseCurrency,
@@ -26,23 +29,29 @@ export async function fetchCurrencyRange(
   const results = await Promise.allSettled(
     promises.map((promise) => promise())
   );
-  console.log(results);
-  console.log(JSON.stringify(results));
+  //console.log(results);
+  //console.log(JSON.stringify(results));
 }
 
-export async function fetchCurrency(date, baseCurrency, destinationCurrency) {
+export async function fetchCurrency(baseCurrency, [startDate, endDate]) {
   try {
-    console.log("fetchCurrency");
+    //console.log("fetchCurrency");
     // check if date with baseCurrency & destinationCurrency exists in localStorage, if so, return the value
     // from localStorage without fetching
+    console.log(startDate);
     const response = await fetch(
-      `${config.api.url}/${date}?access_key=${config.api.API_KEY}&base=${baseCurrency}&symbols=${destinationCurrency}`
+      `${URL}?apikey=${API_KEY}&base_currency=${baseCurrency}&date_from=${startDate}&date_to=${startDate}`,
+      {
+        mode: "no-cors",
+        credentials: "include",
+        method: "POST",
+      }
     );
     const body = await response.json();
 
     console.log("response", response);
     if (response.ok && body.success) {
-      console.log(body);
+      //console.log(body);
       return body.result;
     }
     return { error: body.error };
