@@ -4,10 +4,7 @@ import { fetchCount } from './counterAPI';
 // TODO: add load from json
 const initialState = {
   eurToUsd: [],
-  usdToGbp: [
-    { name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-    { name: "Page B", uv: 300, pv: 1400, amt: 1400 },
-  ],
+  usdToGbp: [],
 };
 
 export const currencySlice = createSlice({
@@ -20,10 +17,10 @@ export const currencySlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.value += 1;
+      // state.value += 1;
     },
-    set: (state, action) => {
-      state[action.payload.currencyGate] = action.payload.data;
+    setCurrencyExchanges: (state = {}, action) => {
+      state[action.payload.currency] = action.payload.data;
     },
   },
 });
@@ -32,6 +29,6 @@ export const getCurrentChartData = (currencyGate) => (state) => {
   return state.currency[currencyGate];
 }
 
-export const { set } = currencySlice.actions;
+export const { setCurrencyExchanges } = currencySlice.actions;
 
 export default currencySlice.reducer;
