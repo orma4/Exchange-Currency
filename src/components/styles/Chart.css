@@ -1,9 +1,5 @@
-.root {
+.chart-root {
   display: flex;
   justify-content: center;
   margin: auto;
-  /* width: 600px;
-    height: 400px;
-
-*/
 }

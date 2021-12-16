@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   ResponsiveContainer,
   ComposedChart,
   Line,
   Area,
-  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
 } from "recharts";
-import "./Chart.css";
+import "../styles/Chart.css";
 
 const Chart = ({ data }) => {
   return (
-    <div class="root" style={{ width: "70%", height: 400 }}>
+    <div class="chart-root" style={{ width: "70%", height: 400 }}>
       <ResponsiveContainer>
         <ComposedChart
           width={500}
@@ -30,9 +28,18 @@ const Chart = ({ data }) => {
         >
           <CartesianGrid stroke="#f5f5f5" />
           <XAxis dataKey="date" scale="band" />
-          <YAxis type="number" orientation="left" domain={['dataMin', 'dataMax']} />
+          <YAxis
+            type="number"
+            orientation="left"
+            domain={["dataMin", "dataMax"]}
+          />
           <Tooltip />
-          <Area type="monotone" dataKey="value" fill="#8884d8" stroke="#8884d8" />
+          <Area
+            type="monotone"
+            dataKey="value"
+            fill="#8884d8"
+            stroke="#8884d8"
+          />
           <Line type="monotone" dataKey="value" stroke="#ff7300" />
         </ComposedChart>
       </ResponsiveContainer>

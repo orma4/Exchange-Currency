@@ -1,0 +1,25 @@
+nav a {
+  font-size: 21px;
+}
+
+.navbar {
+  margin-bottom: 50px !important;
+}
+
+nav a:hover,
+:focus {
+  color: #81145d !important;
+  transform: scale(1.15);
+  transform-origin: left bottom;
+  transition: transform 0.5s;
+}
+
+.navbar-toggler {
+  margin-right: 11px !important;
+}
+
+@media screen and (max-width: 704px) {
+  .navbar {
+    margin-bottom: 0px !important;
+  }
+}

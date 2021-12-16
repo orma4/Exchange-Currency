@@ -1,38 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/Header.css";
 
 const Header = () => {
+  const [state, setState] = useState({
+    menu: false,
+    isOpen: false,
+  });
+
+  const toggleMenu = () => {
+    setState({
+      ...state,
+      menu: !state.menu,
+    });
+  };
+
+  const show = state.menu ? "show" : "";
+
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          Exchange App
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <Link aria-current="page" className="nav-link" to="/UsdToGpb">
-                USD to GBP
-              </Link>
-            </li>
-            <li class="nav-item">
-              <Link aria-current="page" className="nav-link" to="/EuroToUsd">
-                $ to EUR
-              </Link>
-            </li>
-          </ul>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link className="navbar-brand px-2" to="/">
+        Exchange App
+      </Link>
+      <button className="navbar-toggler" type="button" onClick={toggleMenu}>
+        <span className="navbar-toggler-icon" />
+      </button>
+      <div className={"collapse navbar-collapse " + show}>
+        <div className="navbar-nav">
+          <Link className="nav-item nav-link px-3" to="/UsdToGpb">
+            💲 to 💷
+          </Link>
+          <Link className="nav-item nav-link px-3" to="/EuroToUsd">
+            💶 to 💲
+          </Link>
         </div>
       </div>
     </nav>
