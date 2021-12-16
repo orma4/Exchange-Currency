@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Picker = ({ endDate, setEndDate, startDate, setStartDate }) => {
   const handleChange = (dates) => {
-    console.log("handleChange", dates);
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);

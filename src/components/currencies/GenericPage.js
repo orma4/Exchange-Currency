@@ -47,7 +47,7 @@ const GenericPage = ({ storeKey = "usdToGbp", base = "USD", dest = "GBP" }) => {
         <Spinner />
       ) : (
         <>
-          <Chart data={currencyExchanges} />
+          <Chart data={currencyExchanges} storeKey={storeKey} />
           <div className="date-picker">
             <DatePicker
               endDate={endDate}
