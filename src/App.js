@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Navigate to="/UsdToGpb" />} />
           <Route path="/UsdToGpb" element={<UsdToGbp />} />
           <Route path="/EuroToUsd" element={<EuroToUsd />} />
-          <Route path="*" element={<h1>Not found!</h1>} />
+          <Route path="*" element={<h1>404 Page Not found!</h1>} />
         </Routes>
       </div>
     </Router>
